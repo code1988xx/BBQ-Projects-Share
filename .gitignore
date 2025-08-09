@@ -1,0 +1,47 @@
+# === Eclipse spezifisch ===
+.classpath
+.project
+.settings/
+
+# === IntelliJ IDEA spezifisch ===
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# === Build-Ordner ===
+bin/
+target/
+out/
+build/
+
+# === Betriebssystem-spezifisch ===
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+## Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# === Sonstiges ===
+## Logs
+*.log
+
+## Temporäre Dateien
+*.tmp
+*.swp
+*.swo
+
+# === Maven/Gradle (optional, falls genutzt) ===
+.mvn/
+!/.mvn/wrapper/maven-wrapper.jar
+**/target/
+.gradle/
+
+# === Node.js (nur falls mal genutzt) ===
+node_modules/
+npm-debug.log
+yarn-error.log

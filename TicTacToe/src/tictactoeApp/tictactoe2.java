@@ -22,8 +22,7 @@ public class tictactoe2 {
 				{ 0, 4, 8 }, { 2, 4, 6 } // Diagonal
 		};
 		for (int[] a : gewonnen)
-			if (spielfeld[a[0]] == s && spielfeld[a[1]] == s && spielfeld[a[2]] == s) // prüfen ob alle drei Felder das
-																						// Symbol "s" haben
+			if (spielfeld[a[0]] == s && spielfeld[a[1]] == s && spielfeld[a[2]] == s) // prüfen ob alle drei Felder das Symbol "s" haben
 				return true; // Spieler hat gewonnen weil Gewinnbedingung passt
 		return false; // Spieler hat (noch) nicht gewonnen
 	}// hatGewonnen
@@ -45,8 +44,7 @@ public class tictactoe2 {
 			char symbol = spieler1 ? 'X' : 'O'; // falls nicht spieler1, dann Symbol auf "O" switchen
 			System.out.print("Spieler " + (spieler1 ? "\u001B[32m 1 \u001B[0m" : "\u001B[31m 2 \u001B[0m") + " (" + symbol + ") wähle Feld: ");
 
-			int zugPosition = sc.nextInt() - 1; // Eingabefeld und -> -1, weil Index bei 0 startet ich aber Feld[0] 1
-												// gesetzt habe optisch
+			int zugPosition = sc.nextInt() - 1; // Eingabefeld und -> -1, weil Index bei 0 startet ich aber Feld[0] 1 gesetzt habe optisch
 
 			if (zugPosition < 0 || zugPosition > 8 || spielfeld[zugPosition] == 'X' || spielfeld[zugPosition] == 'O') {
 				System.out.println("Ungültige Eingabe!");

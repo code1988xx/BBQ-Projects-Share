@@ -16,7 +16,7 @@ public class tictactoe3My {
 //	public static final String BLUE = "\033[34m";
 //	public static final String UNDERLINE = "\033[4m";
 
-	// --- Spielfeld ---
+	// --- Spielfeld ---	      Index:  0    1    2    3    4    5    6    7    8
 	public static String[] spielfeld = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 	// --- Gewinnprüfung ---
@@ -69,13 +69,13 @@ public class tictactoe3My {
 			// Spieler 1
 			int eingabe1;
 			while (true) {
-				System.out.print("Spieler 1 wähle dein Feld: ");
+				System.out.print(cyanBold + "Spieler 1 wähle dein Feld: " + RESET);
 				eingabe1 = spielerEingabe(sc) - 1;
 
 				if (eingabe1 < 0 || eingabe1 > 8) {
-					System.out.println(backRED + "Ungültige Eingabe" + RESET);
+					System.out.println(backRED + BOLD + "Ungültige Eingabe\n" + RESET);
 				} else if (!spielfeld[eingabe1].equals(String.valueOf(eingabe1 + 1))) {
-					System.out.println(backRED + "Feld schon belegt" + RESET);
+					System.out.println(backRED + BOLD + "Feld schon belegt" + RESET);
 				} else {
 					spielfeld[eingabe1] = cyanBold + "X" + RESET;
 					printFeld();
@@ -95,13 +95,13 @@ public class tictactoe3My {
 			// Spieler 2
 			int eingabe2;
 			while (true) {
-				System.out.print("Spieler 2 wähle dein Feld: ");
+				System.out.print(magentaBold + "Spieler 2 wähle dein Feld: " + RESET);
 				eingabe2 = spielerEingabe(sc) - 1;
 
 				if (eingabe2 < 0 || eingabe2 > 8) {
-					System.out.println(backRED + "Ungültige Eingabe" + RESET);
+					System.out.println(backRED + BOLD + "Ungültige Eingabe\n" + RESET);
 				} else if (!spielfeld[eingabe2].equals(String.valueOf(eingabe2 + 1))) {
-					System.out.println(backRED + "Feld schon belegt" + RESET);
+					System.out.println(backRED + BOLD + "Feld schon belegt\n" + RESET);
 				} else {
 					spielfeld[eingabe2] = magentaBold + "O" + RESET;
 					printFeld();

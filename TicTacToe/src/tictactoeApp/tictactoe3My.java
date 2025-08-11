@@ -30,10 +30,10 @@ public class tictactoe3My {
 			if (spielfeld[gewinnLinie[0]].contains(symbol) &&  // musste statt .equals mit .contains arbeiten, weil ich Farbcode nutze! So prüft es ob "X" oder "O" irgendwo in dem String ist!
 					spielfeld[gewinnLinie[1]].contains(symbol) && 
 					spielfeld[gewinnLinie[2]].contains(symbol)) {
-				return true;
+				return true; // es gibt einen Gewinner
 			}// if
 		}// for
-		return false;
+		return false; // es gibt noch keinen Gewinner
 	}// hatGewonnen()
 
 	// --- Mögliches unentschieden prüfen ---
@@ -85,11 +85,11 @@ public class tictactoe3My {
 
 			if (hatGewonnen("X")) {
 				System.out.println(GREEN + BOLD + "🎉 Spieler 1 hat gewonnen!");
-				break;
+				break; // Spiel wird bei Sieg beendet
 			}
 			if (istUnentschieden()) {
 				System.out.println("Unentschieden!");
-				break;
+				break; // Spiel wird bei unentschieden beendet
 			}
 
 			// Spieler 2

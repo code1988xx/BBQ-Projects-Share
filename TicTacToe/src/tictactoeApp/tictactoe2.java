@@ -1,14 +1,27 @@
 package tictactoeApp;
 
 import java.util.Scanner;
+import javax.swing.JOptionPane;
 
 public class tictactoe2 {
+	
+	//ANSI-Codes -> Text-Styles (Textfarbe, Stil etc.)
+	public static final String RESET = "\033[0m";
+    public static final String GREEN = "\033[32m";
+    public static final String YELLOW = "\033[33m";
+    public static final String BLUE = "\033[34m";
+    public static final String MAGENTA = "\033[35m";
+    public static final String CYAN = "\033[36m";
+    public static final String backRED = "\033[41m";
+    public static final String UNDERLINE = "\033[4m";
+    public static final String BOLD = "\033[1m";
+    
 	
 	static char[] spielfeld = { '1', '2', '3', '4', '5', '6', '7', '8', '9' }; // Spielfeld
 
 	// Spielfeld anzeigen
 	static void printFeld() {
-		System.out.println(" " + spielfeld[0] + " | " + spielfeld[1] + " | " + spielfeld[2]);
+		System.out.println(" \n " + spielfeld[0] + " | " + spielfeld[1] + " | " + spielfeld[2]);
 		System.out.println("---+---+---");
 		System.out.println(" " + spielfeld[3] + " | " + spielfeld[4] + " | " + spielfeld[5]);
 		System.out.println("---+---+---");
@@ -39,35 +52,48 @@ public class tictactoe2 {
 		Scanner sc = new Scanner(System.in);
 		boolean spieler1 = true; // true = Spieler 1 (X), false = Spieler 2 (O)
 
-		while (true) {
-			printFeld();
-			char symbol = spieler1 ? 'X' : 'O'; // falls nicht spieler1, dann Symbol auf "O" switchen
-			System.out.print("Spieler " + (spieler1 ? "\u001B[32m 1 \u001B[0m" : "\u001B[31m 2 \u001B[0m") + " (" + symbol + ") wähle Feld: ");
+		// Max. 9 Züge
+		for (int zug = 0; zug < 9; zug++) {
+		    printFeld();
 
-			int zugPosition = sc.nextInt() - 1; // Eingabefeld und -> -1, weil Index bei 0 startet ich aber Feld[0] 1 gesetzt habe optisch
+		    char symbol;
+		    if (spieler1) {
+		        symbol = 'X';
+		    } else {
+		        symbol = 'O';
+		    }// if
 
-			if (zugPosition < 0 || zugPosition > 8 || spielfeld[zugPosition] == 'X' || spielfeld[zugPosition] == 'O') {
-				System.out.println("Ungültige Eingabe!");
-				continue; // zurück zum Schleifenanfang, erneut fragen
-			} // if
+		    if (spieler1) {
+		        System.out.print("Spieler " + MAGENTA + "1" + RESET + " (" + MAGENTA + symbol + RESET + ") wähle Feld: ");
+		    } else {
+		        System.out.print("Spieler " + YELLOW + "2" + RESET + " (" + YELLOW + symbol + RESET + ") wähle Feld: ");
+		    }// if
 
-			spielfeld[zugPosition] = symbol; // Wer am Zug ist
+		    int zugPosition = sc.nextInt() - 1;
 
-			if (hatGewonnen(symbol)) {
-				printFeld();
-				System.out.println("Spieler " + (spieler1 ? "1" : "2") + " hat gewonnen!");
-				break;
-			} // if
+		    if (zugPosition < 0 || zugPosition > 8 || spielfeld[zugPosition] == 'X' || spielfeld[zugPosition] == 'O') {
+		    	JOptionPane.showMessageDialog(null, "Spielfeld belegt -> anderes Feld wählen!");
+		        zug--; // Versuch nicht zählen, damit Spiel nicht vorzeitig endet
+		        continue; // WICHTIG: Bricht den aktuellen Schleifendurchlauf hier ab und springt direkt zum nächsten Durchlauf (for-Schleife-Anfang)
+		    }// if
 
-			if (istUnentschieden()) {
-				printFeld();
-				System.out.println("Unentschieden!");
-				break;
-			} // if
+		    spielfeld[zugPosition] = symbol;
 
-			spieler1 = !spieler1; // Spieler wechseln
-		}// while
+		    if (hatGewonnen(symbol)) {
+		        printFeld();
+		        System.out.println("Spieler " + (spieler1 ? "1" : "2") + " hat gewonnen!");
+		        sc.close();
+		        return;
+		    }// if
 
+		    // Spieler wechseln
+		    spieler1 = !spieler1;
+		}// for
+
+		// Kein Sieger nach 9 Zügen → Unentschieden
+		printFeld();
+		System.out.println("Unentschieden!");
 		sc.close();
+	
 	}// main
 }// class

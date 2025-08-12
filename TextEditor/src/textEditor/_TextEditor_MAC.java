@@ -157,7 +157,6 @@ public class _TextEditor_MAC extends Application {
 		});
 
 		// Layout
-//		GridPane gridPane = new GridPane();
 		BorderPane borderPane = new BorderPane();
 
 		borderPane.setTop(menuBar);
@@ -177,6 +176,7 @@ public class _TextEditor_MAC extends Application {
 }// class
 
 
+//		GridPane gridPane = new GridPane();
 //		gridPane.add(btnOpen, 0, 0);
 //		gridPane.add(btnWrite, 1, 0);
 //		gridPane.add(btnCloe, 2, 0);

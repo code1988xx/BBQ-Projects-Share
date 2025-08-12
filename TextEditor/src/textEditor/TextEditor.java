@@ -23,7 +23,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class TextEditor extends Application {
-	
+	 
 	private static File selectedFile;
 	private static String fileDataString;
 

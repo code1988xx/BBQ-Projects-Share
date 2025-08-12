@@ -26,7 +26,7 @@ public class TextEditor extends Application {
 	 
 	private static File selectedFile;
 	private static String fileDataString;
-
+ 
 	// -- Methode Datei-Inhalt lesen und anzeigen --
 	private static String readFileData(File file) {
 		String data = "";

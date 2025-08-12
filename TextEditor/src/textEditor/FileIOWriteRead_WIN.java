@@ -6,7 +6,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
  
-public class FileIOWriteRead {
+public class FileIOWriteRead_WIN {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

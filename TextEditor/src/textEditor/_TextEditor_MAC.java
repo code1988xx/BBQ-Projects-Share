@@ -22,7 +22,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
-public class TextEditor extends Application {
+public class _TextEditor_MAC extends Application {
 	 
 	private static File selectedFile;
 	private static String fileDataString;

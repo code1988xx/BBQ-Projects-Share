@@ -66,7 +66,7 @@ public class SlotMachine extends Application {
 		viewDiamant.setFitWidth(100);
 		gridPane.add(viewDiamant, 2, 0);
 
-		// ButtonStart-Action
+		// --- ButtonStart-Action ---
 		btnStart.setOnAction(klick -> {
 			erstesBild = (int) (Math.random() * 3) + 1;
 			zweitesBild = (int) (Math.random() * 3) + 1;
@@ -96,7 +96,7 @@ public class SlotMachine extends Application {
 				viewDiamant.setImage(new Image("file:src/Diamant.png"));
 			} // if drittesBild
 
-			// Prüfung ob gewonnen oder nicht
+			// --- Gewinnprüfung ---
 			if (erstesBild == 1 && (erstesBild == zweitesBild && zweitesBild == drittesBild)) {
 				credit += 20;
 				Alert alert = new Alert(AlertType.INFORMATION, "SUPER!!! 3x BANANA DU HAST 20€ GEWONNEN!");
@@ -144,7 +144,7 @@ public class SlotMachine extends Application {
 
 		}); // Button-Action
 
-		// stage und scene
+		// --- stage & scene ---
 		Scene scene = new Scene(gridPane, 900, 900);
 		stage.setScene(scene);
 		stage.setResizable(false);

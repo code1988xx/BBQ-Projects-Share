@@ -26,6 +26,7 @@ public class _TextEditor_MAC extends Application {
 	 
 	private static File selectedFile;
 	private static String fileDataString;
+	private File currentFile;
  
 	// -- Methode Datei-Inhalt lesen und anzeigen --
 	private static String readFileData(File file) {
@@ -49,12 +50,21 @@ public class _TextEditor_MAC extends Application {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		launch(args);
-	}
+	}// main
+	
 
 	@Override
 	public void start(Stage stage) throws Exception {
 		
-		File file = new File("C:\\Users\\AytunGüler\\eclipse-workspace\\AppFX6\\newU27.txt");
+		// -- Beim Start direkt eine neue Textdatei im Wunschpfad erstellen --
+		File file = new File("/Users/a1903/desktop/textDatei.txt");
+		
+		try {
+			file.createNewFile();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 
 		// Elements
 		Button btnOpen = new Button("Open File");
@@ -92,36 +102,56 @@ public class _TextEditor_MAC extends Application {
 		TextArea tArea = new TextArea();
 		Label statusLabel = new Label("Status: ");
 
+		
+		// -- FileChooser um Dateiauswahlmaske zu önnfen --
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Open JX File");
+		fileChooser.setTitle("Open JFX File");
 		fileChooser.setInitialFileName("jfxText.txt");
 		fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Files", "*.*.*"),
 				new FileChooser.ExtensionFilter("Text Files", "*.text"),
 				new FileChooser.ExtensionFilter("HTML Files", "*.text"));
 
-		// EventHandler
-		mAbout.setOnAction(klick -> {
-			Alert alert = new Alert(AlertType.INFORMATION);
-			alert.setTitle("About JX Editor");
-			alert.setHeaderText(null); // muss auf null sein, wenn ich keine Meldung anzeigen will (sonst kommt nämlich
-										// default-Meldung)
-			alert.setContentText("JFX Text Editor\nVersion:0.0.1");
-			alert.showAndWait();
 
-		});// mAbout()
-
+		
+		// -- Event: Open File --
 		itemOpen.setOnAction(event -> {
 			File selectedFile = fileChooser.showOpenDialog(stage);
 			if (selectedFile != null) {
+				currentFile = selectedFile;
 				String filePath = selectedFile.getAbsolutePath();
 				statusLabel.setText("Status: OpenFile, Path" + filePath);
-
-		        // -- Datei lesen und anzeigen --
-		        String dateiInhalt = readFileData(selectedFile);
-		        tArea.setText(dateiInhalt);	   
-		    }
+				
+				// -- Datei lesen und anzeigen --
+				String dateiInhalt = readFileData(selectedFile);
+				tArea.setText(dateiInhalt);	   
+			}
 		});// itemOpen()
 
+		
+		
+		// -- Event: Write to File --
+		itemWrite.setOnAction(event -> {		
+		    if (currentFile == null) return; // keine Datei geöffnet -> nichts tun
+		    try (FileWriter fileWriter = new FileWriter(currentFile)) {
+		        fileWriter.write(tArea.getText());
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+		});
+		
+		
+		// -- Event: About klick --
+		mAbout.setOnAction(event -> {
+			Alert alert = new Alert(AlertType.INFORMATION);
+			alert.setTitle("About JX Editor");
+			alert.setHeaderText(null); // muss auf null sein, wenn ich keine Meldung anzeigen will (sonst kommt nämlich
+			// default-Meldung)
+			alert.setContentText("JFX Text Editor\nVersion:0.0.1");
+			alert.showAndWait();
+			
+		});// mAbout()
+		
+		// -- Event: Exit klick --
 		itemClose.setOnAction(event -> {
 			stage.close();
 		});
@@ -134,6 +164,19 @@ public class _TextEditor_MAC extends Application {
 		borderPane.setCenter(tArea);
 		borderPane.setBottom(statusLabel);
 
+
+		// Scene
+		Scene scene = new Scene(borderPane, 600, 500);
+		stage.setScene(scene);
+
+		stage.setTitle("TextEditor"); // FensterTitel
+		stage.show();
+
+	}
+
+}// class
+
+
 //		gridPane.add(btnOpen, 0, 0);
 //		gridPane.add(btnWrite, 1, 0);
 //		gridPane.add(btnCloe, 2, 0);
@@ -142,14 +185,3 @@ public class _TextEditor_MAC extends Application {
 //
 //		gridPane.add(tArea, 0, 1, 3, 1);
 //		gridPane.setGridLinesVisible(true);
-
-		// Scene
-		Scene scene = new Scene(borderPane, 600, 500);
-		stage.setScene(scene);
-
-		stage.setTitle("New JFX APP!");
-		stage.show();
-
-	}
-
-}

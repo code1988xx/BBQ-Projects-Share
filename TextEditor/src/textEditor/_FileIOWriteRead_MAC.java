@@ -5,43 +5,45 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
- 
+
 public class _FileIOWriteRead_MAC {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		File file = new File("C:\\Users\\AytunGüler\\eclipse-workspace\\AppFX6\\newU27.txt");
+		
+		// --- neue Datei im Wunschpfad erstellen ---
+		File file = new File("/Users/a1903/desktop/textDatei.txt");
 
 		try {
 			file.createNewFile();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
+		// --- Programmablauf inkl. Methodenaufruf ---
+		
 		String fileData = readFileData(file);
 		System.out.println(fileData);
-		String data = fileData + "Hi U27!";
-		writeDataToFile(file, data);
+		String updatedData = fileData + "Hi U27!";
+		writeDataToFile(file, updatedData);
+		readFileData(file);
 
-	}
+	}// main
 
 	private static String readFileData(File file) {
-		String data = "";
+		String textAdd = "";
 
 		try {
 			Scanner scanner = new Scanner(file);
 			while (scanner.hasNextLine()) {
-				data = data + scanner.nextLine() + "\n";
+				textAdd = textAdd + scanner.nextLine() + "\n";
 				// System.out.println(data);
 			}
-			return data;
+			return textAdd;
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return data;
+		return textAdd;
 	}
 
 	private static void writeDataToFile(File file, String data) {
@@ -50,12 +52,9 @@ public class _FileIOWriteRead_MAC {
 			fileWriter.write(data);
 			fileWriter.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
 
-	}// main
+	}// writeDataToFile
 
 }// class

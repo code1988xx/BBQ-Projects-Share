@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class TicTacToeJFX extends Application {
-	
+
 	private boolean spieler1 = true; // true = X, false = O
 	private Button[][] spielfeld = new Button[3][3]; // Spielfeld mit Hilfe von Button-Array erstellt
 	private int zuege = 0; // Anzahl gespielte Züge
@@ -66,7 +66,7 @@ public class TicTacToeJFX extends Application {
 		stage.setTitle("TicTacToe");
 		stage.setResizable(false);
 		stage.show();
-	}
+	}// start()
 
 	// -- Gewinnprüfung --
 	private boolean hatGewonnen(String symbol) {
@@ -98,22 +98,22 @@ public class TicTacToeJFX extends Application {
 	}
 
 	private void zeigeMeldung(String text) {
-	    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-	    alert.setTitle("Spielende");
-	    alert.setHeaderText(null);
-	    alert.setContentText(text + "\nMöchten Sie weiterspielen?");
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Spielende");
+		alert.setHeaderText(null);
+		alert.setContentText(text + "\nMöchten Sie weiterspielen?");
 
-	    alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+		alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
 
-	    alert.showAndWait().ifPresent(response -> {
-	        if (response == ButtonType.YES) {
-	            reset();
-	        } else {
-	            Platform.exit();   // Beendet alle JavaFX-Fenster; 
-	            	               // stage.close() schließt nur ein Fenster und Programm könnte weiterlaufen;
-	                  			   // System.exit(0) erzwingt sofort das Ende der gesamten JVM
-	        }
-	    });
+		alert.showAndWait().ifPresent(response -> {
+			if (response == ButtonType.YES) {
+				reset();
+			} else {
+				Platform.exit(); // Beendet alle JavaFX-Fenster;
+									// stage.close() schließt nur ein Fenster und Programm könnte weiterlaufen;
+									// System.exit(0) erzwingt sofort das Ende der gesamten JVM
+			}
+		});
 	}
 
 	// -- Methode um Spielfeld zu reseten --

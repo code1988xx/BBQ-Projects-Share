@@ -51,7 +51,7 @@ public class slotMachine2 extends Application {
 		gridPane.add(viewKirsche, 1, 0);
 		gridPane.add(viewDiamant, 2, 0);
 
-		// Button-Click → Bilder setzen + Credit prüfen
+		// EVENT Button-Click
 		btnStart.setOnAction(e -> {
 			Image img1 = getRandomImage();
 			Image img2 = getRandomImage();

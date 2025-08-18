@@ -14,7 +14,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
+ 
 public class MemoryGame extends Application {
 
 	//--- Images die ich verwenden werde (per ChatGPT generiert!) ---

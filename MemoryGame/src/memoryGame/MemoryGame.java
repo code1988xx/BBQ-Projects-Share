@@ -117,7 +117,7 @@ public class MemoryGame extends Application {
 						alert.setHeaderText(null);
 						alert.showAndWait(); 					     //Code stoppt hier, bis ich OK klicke, bei alert.show() läuft Code weiter!
 					} else {  									    //Falls Karten nicht matchen, wieder umdrehen
-						PauseTransition pt = new PauseTransition(Duration.seconds(0.2));
+						PauseTransition pt = new PauseTransition(Duration.seconds(0.5));
 						ImageView tempErsteKarte = ersteKarte;
 						pt.setOnFinished(ev -> {
 							tempErsteKarte.setImage(rueckseite);

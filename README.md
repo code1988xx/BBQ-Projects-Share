@@ -17,4 +17,4 @@ Dieses Repository enthält verschiedene Java-Übungen, die im Rahmen meiner Umsc
 
 ## 🌍 Ziel
 
-Dieses Repository dient der Dokumentation und Versionierung meiner Lernfortschritte in Java sowie der Vorbereitung auf das IHK-Praktikum.
+Dieses Repository dient der Dokumentation und Versionierung meiner Lernfortschritte in Java sowie der Vorbereitung auf das IHK-Praktikum und IHK-Abschlussprüfung.
